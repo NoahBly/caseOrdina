@@ -19,29 +19,46 @@ public class WordFrequencyclass implements WordFrequency,WordFrequencyAnalyzer{
 
     @Override
     public int calculateHighestFrequency(String text) {
-        String[] StringArray = text.split(" ");
-
         int max = 0;
         int count = 0;
-        String word = StringArray[0];
-        String currentword = StringArray[0];
+        String word = "";
+        Map<String, Integer> map1 = new TreeMap<>();
 
-        for(int i =0; i < StringArray.length; i++) {
-            if(StringArray[i].equals(currentword)) {
-                count++;
+        String arr[] = text.split(" ");
+
+        for (int i = 0; i < arr.length; i++) {
+
+            if (map1.containsKey(arr[i])) {
+                map1.put(arr[i], map1.get(arr[i]) + 1);
+                count = map1.get(arr[i]);
             } else {
+                map1.put(arr[i], 1);
                 count = 1;
-                currentword = StringArray[i];
             }
-            if(max<count){
-                max= count;
-                word = StringArray[i];
+            if (max < count) {
+                max = count;
+                word = arr[i];
             }
+
 
         }
 
+//        String[] StringArray = text.split(" ");
+
+//        int max = 0;
+//        int count = 0;
+//        String word = StringArray[0];
+//        String currentword = StringArray[0];
+
+//        for(int i =0; i < StringArray.length; i++) {
+//            if(StringArray[i].equals(currentword)) {
+//                count++;
+//            } else {
+//                count = 1;
+//                currentword = StringArray[i];
+//            }
         System.out.println(word + " " + max);
-        return max;
+    return max;
     }
 
     @Override
