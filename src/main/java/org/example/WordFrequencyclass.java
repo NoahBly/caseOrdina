@@ -61,60 +61,51 @@ public class WordFrequencyclass implements WordFrequency,WordFrequencyAnalyzer{
     @Override
     public Map<String,Integer> calculateMostFrequentNWords(String text, int n) {
 
-        String[] StringArray = text.split(" ");
-
-        int max = 0;
+        String word = "";
         int count = 0;
-        String word = StringArray[0];
-        String currentword = StringArray[0];
-        Map<String, Integer> Map1 = new HashMap<String, Integer>();
-        Map<String, Integer> Map2 = new HashMap<String, Integer>();
-        for (int i = 0; i < StringArray.length; i++) {
-            if (StringArray[i].equals(currentword)) {
-                count++;
-            } else {
-                count = 1;
-                currentword = StringArray[i];
+        Map<String,Integer> map1=new TreeMap<>();
+
+        String arr[]=text.split(" ");
+
+        for(int i=0;i<arr.length;i++)
+        {
+
+            if(map1.containsKey(arr[i]))
+            {
+                map1.put(arr[i], map1.get(arr[i])+1);
             }
-
-            word = StringArray[i];
-            Map1.put(word, count);
-
+            else
+            {
+                map1.put(arr[i],1);
+            }
         }
 
-        LinkedHashMap<String, Integer> numbers1 = Map1.entrySet()
+        Map<String, Integer> Map2 = new HashMap<String, Integer>();
+
+        LinkedHashMap<String, Integer> numbers1 = map1.entrySet()
                 .stream()
                 .sorted(Map.Entry.<String, Integer>comparingByValue().reversed())
                 .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
 
         System.out.println(numbers1.toString());
 
-            int value2 = 0;
-            Loop:for (Map.Entry<String, Integer> entry : numbers1.entrySet()) {
-                int value = entry.getValue();
-                Map2.put(entry.getKey(), entry.getValue());
-                value2 = value2 + entry.getValue();
-                if (n == value) {
+        int value2 = 0;
+        Loop:for (Map.Entry<String, Integer> entry : numbers1.entrySet()) {
+            int value = entry.getValue();
+            Map2.put(entry.getKey(), entry.getValue());
+            value2 = value2 + entry.getValue();
+            if (n == value) {
+                System.out.println(Map2.toString());
+                break Loop;
+            } else {
+                if (n == value2) {
                     System.out.println(Map2.toString());
                     break Loop;
-                } else {
-                    if (n == value2) {
-                        System.out.println(Map2.toString());
-                        break Loop;
-                    }
-
                 }
 
-//
-//            } else {
-//                Map<String, Integer> Map1  = new HashMap<String, Integer>();
-
-
             }
-
-
+        }
 
         return Map2;
-
     }
 }
