@@ -39,24 +39,7 @@ public class WordFrequencyclass implements WordFrequency,WordFrequencyAnalyzer{
                 max = count;
                 word = arr[i];
             }
-
-
         }
-
-//        String[] StringArray = text.split(" ");
-
-//        int max = 0;
-//        int count = 0;
-//        String word = StringArray[0];
-//        String currentword = StringArray[0];
-
-//        for(int i =0; i < StringArray.length; i++) {
-//            if(StringArray[i].equals(currentword)) {
-//                count++;
-//            } else {
-//                count = 1;
-//                currentword = StringArray[i];
-//            }
         System.out.println(word + " " + max);
     return max;
     }
@@ -119,10 +102,8 @@ public class WordFrequencyclass implements WordFrequency,WordFrequencyAnalyzer{
 //                    System.out.println(Map2.toString());
                     break Loop;
                 }
-
             }
         }
-
         return Map2;
     }
 }
