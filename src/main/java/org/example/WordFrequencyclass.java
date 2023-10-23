@@ -104,7 +104,7 @@ public class WordFrequencyclass implements WordFrequency,WordFrequencyAnalyzer{
                 .sorted(Map.Entry.<String, Integer>comparingByValue().reversed())
                 .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
 
-        System.out.println(numbers1.toString());
+//        System.out.println(numbers1.toString());
 
         int value2 = 0;
         Loop:for (Map.Entry<String, Integer> entry : numbers1.entrySet()) {
@@ -112,11 +112,11 @@ public class WordFrequencyclass implements WordFrequency,WordFrequencyAnalyzer{
             Map2.put(entry.getKey(), entry.getValue());
             value2 = value2 + entry.getValue();
             if (n == value) {
-                System.out.println(Map2.toString());
+//                System.out.println(Map2.toString());
                 break Loop;
             } else {
                 if (n == value2) {
-                    System.out.println(Map2.toString());
+//                    System.out.println(Map2.toString());
                     break Loop;
                 }
 
